@@ -3,6 +3,7 @@ from configparser import ConfigParser
 import math
 
 def readConfig():
+    print("Reading configuration file...")
     file = "settings.ini"
     config = ConfigParser()
     config.read(file)
@@ -278,12 +279,13 @@ def main():
         h, w = result.size
         new_size = (math.ceil(h*RESIZE_PERCENT), math.ceil(w*RESIZE_PERCENT))
         resizedResult = result.resize(new_size)
-        resizedResult = resizedResult.filter(ImageFilter.BoxBlur(2))
+        #resizedResult = resizedResult.filter(ImageFilter.BoxBlur(2))
         print("Saving...")
         resizedResult.save("result.png", 'PNG')
     else:
         print("Saving...")
         result.save("result.png", "PNG")
     print("Done!")
+    resizedResult.show()
 
 main()
