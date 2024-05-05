@@ -1,21 +1,43 @@
 from PIL import Image, ImageFilter
+from configparser import ConfigParser
 import math
 
-# TODO: turn these global variables into a config file for easier and modular use.
-ALPHABET_FILE = "letters.txt"
-TEXT_NAME = "text.txt"
-IMAGE_SIZE = 1000
-HEXAGON_SIDE = IMAGE_SIZE/2
-HEXAGON_APOTHEM = math.sqrt(HEXAGON_SIDE**2 - (HEXAGON_SIDE**2)/4)
-HEXAGON_SMALL_HEIGHT = math.sqrt(HEXAGON_SIDE**2 - HEXAGON_APOTHEM**2)
-LINE_WIDTH = 20
-CROP_ROOM = math.floor(IMAGE_SIZE - 2*HEXAGON_APOTHEM)
-MAX_CHARACTERS_PER_LINE = 4
+def readConfig():
+    file = "settings.ini"
+    config = ConfigParser()
+    config.read(file)
 
-# User options
-GUIDES = False # Draw Guidelines for the placement of each symbol
-RESIZE = False # Resize image after completion
-RESIZE_PERCENT = 0.2 # Amount the image should be resized to
+    # User options
+    global TEXT_NAME
+    TEXT_NAME = config["UserSettings"]["TextFile"]
+    global GUIDES
+    GUIDES = config["UserSettings"].getboolean("Guides")
+    global RESIZE
+    RESIZE = config["UserSettings"].getboolean("Resize")
+    global RESIZE_PERCENT
+    RESIZE_PERCENT = config["UserSettings"].getfloat("ResizePercent")
+    global MAX_CHARACTERS_PER_LINE
+    MAX_CHARACTERS_PER_LINE = config["UserSettings"].getint("CharactersPerLine")
+
+
+    # Program options
+    global ALPHABET_FILE
+    ALPHABET_FILE = config["ProgramSettings"]["AlphabetFile"]
+    global IMAGE_SIZE
+    IMAGE_SIZE = config["ProgramSettings"].getint("ImageSize")
+    global LINE_WIDTH
+    LINE_WIDTH = config["ProgramSettings"].getint("LineWidth")
+
+    # Perform calculations for image formatting
+    global HEXAGON_SIDE
+    HEXAGON_SIDE = IMAGE_SIZE/2
+    global HEXAGON_APOTHEM
+    HEXAGON_APOTHEM = math.sqrt(HEXAGON_SIDE**2 - (HEXAGON_SIDE**2)/4)
+    global HEXAGON_SMALL_HEIGHT
+    HEXAGON_SMALL_HEIGHT = math.sqrt(HEXAGON_SIDE**2 - HEXAGON_APOTHEM**2)
+    global CROP_ROOM
+    CROP_ROOM = math.floor(IMAGE_SIZE - 2*HEXAGON_APOTHEM)
+
 
 
 def readAlphabet(vowels, consonants, modifiers, breaks):
@@ -160,7 +182,7 @@ def checkLetter(letter, vowels, consonants, modifiers, breaks):
 
 def drawSymbol(numbers):
     # Takes numbers in an array and joins them into an image by using the corresponding
-    # Parts(number).png files.
+    # Parts/(number).png files.
     symbol = Image.new('RGBA', (IMAGE_SIZE,IMAGE_SIZE),(255, 255, 255, 0))
 
     for number in numbers:
@@ -239,6 +261,8 @@ def drawGuide(rows, collumns, length, canvas):
 
 
 def main():
+    readConfig()
+
     vowels = {}
     consonants = {}
     modifiers = {}
