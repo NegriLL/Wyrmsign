@@ -7,4 +7,4 @@ To create an image, write your text in a .txt file, then run the code on the sam
 ![Wyrmsign syllabarium guide](https://i.imgur.com/JCI4ucK.png)
 
 ## WARNING
-The generated images can be very large due to the resolution of the individual parts. This issue will be addressed in a future update.
+If resize is set to false, the generated images can be very large due to the resolution of the individual parts. It is recommended to keep resize on.
