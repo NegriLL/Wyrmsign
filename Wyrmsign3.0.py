@@ -12,10 +12,10 @@ LINE_WIDTH = 20
 CROP_ROOM = math.floor(IMAGE_SIZE - 2*HEXAGON_APOTHEM)
 MAX_CHARACTERS_PER_LINE = 4
 
-# Options
-GUIDES = False
-RESIZE = False
-RESIZE_PERCENT = 0.2
+# User options
+GUIDES = False # Draw Guidelines for the placement of each symbol
+RESIZE = False # Resize image after completion
+RESIZE_PERCENT = 0.2 # Amount the image should be resized to
 
 
 def readAlphabet(vowels, consonants, modifiers, breaks):
