@@ -4,6 +4,8 @@ Wyrmsign is a syllabarium parser that converts latin text into a fictional alpha
 To create an image, write your text in the text.txt file (or change the target file name in settings.ini). The configuration file has instructions to suit your preferences. Run the code on the same directory as the text file.
 Once complete, the code will generate your image, display it, and save it as result.png.
 
+It is important to note that the guide is based on the phonemes that each letter makes. It was envisioned as the script for a literal language, concerned with the phonemes of each letter. For this reason, some letters in the latin alphabet are not present since they would be superfluous.
+
 # Language Guide
 ![Wyrmsign syllabarium guide](https://i.imgur.com/JCI4ucK.png)
 
