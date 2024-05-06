@@ -8,7 +8,7 @@ def read_config():
     config = ConfigParser()
     config.read(file)
 
-    # For image formating
+    # Defining geometry of the hexagon
     hexagonSide = int(config["ProgramSettings"].getint("ImageSize")/2)
     hexagonApothem = int(math.sqrt(hexagonSide**2 - (hexagonSide**2)/4))
     hexagonSmallHeight = int(math.sqrt(hexagonSide**2 - hexagonApothem**2))
