@@ -6,5 +6,9 @@ To create an image, write your text in the text.txt file (or change the target f
 # Language Guide
 ![Wyrmsign syllabarium guide](https://i.imgur.com/JCI4ucK.png)
 
+# Example
+Here is an example of an image created using 10 syllables per line, with guides on, and resize set to 10%:
+![Example of the wyrmsign hexagonal script](https://i.imgur.com/FhENQcG.png)
+
 ## WARNING
 If resize is set to false, the generated images can be very large due to the resolution of the individual parts. It is recommended to keep resize on.
